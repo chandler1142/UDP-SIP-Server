@@ -41,14 +41,14 @@ public class UDPServer
         for (;;)    //Loops infinitely
         {
             socket.receive(packet);     //Blocks till packet recieved
-            
+
             InetAddress clientAddress = packet.getAddress();    //client's IP
             int clientPort = packet.getPort();      //client's Port
             
             byte[] arr = new byte[packet.getLength()];
             System.arraycopy(packet.getData(), packet.getOffset(), arr, 0, arr.length);
             String requestMsg = new String(arr);    //recieved Message
-            
+            System.out.println("Receiev message: \n" + requestMsg);
             
             StringTokenizer st = new StringTokenizer(requestMsg,"\r\n");
             String line1 = st.nextToken();  //stores first line of recieved message
